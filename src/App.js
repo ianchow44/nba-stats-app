@@ -12,17 +12,20 @@ class App extends Component {
 
 handleSubmit = (e) => {
   e.preventDefault();
-  this.getPlayerId()
   console.log(this.state.playerName)
+  if (!this.state.playerName || this.state.playerName.length < 1) {
+    alert("Please type player's name!")
+  } 
+  else {
+    this.getPlayerId()
+  }
 }
 
 handleChange = (event) => {
   const replace = event.target.value.split(" ").join("_");
   if(replace.length > 0){
     this.setState({playerName: replace})
-  } else {
-    alert("Please type players name!")
-  }
+  } 
 }
 
   getPlayerId = () => {
@@ -43,7 +46,7 @@ handleChange = (event) => {
   }
 
   getPlayerStats = (playerId) => {
-    axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=2006&player_ids[]=${playerId}`)
+    axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]=${playerId}`)
     .then(async res => {
       console.log(res.data.data)
       this.setState({ playerStats: res.data.data[0]})
