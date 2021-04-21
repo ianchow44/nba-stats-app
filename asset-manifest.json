@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nba-stats-app/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/nba-stats-app/static/js/main.bfdb392b.chunk.js",
-    "main.js.map": "/nba-stats-app/static/js/main.bfdb392b.chunk.js.map",
+    "main.js": "/nba-stats-app/static/js/main.f51979d9.chunk.js",
+    "main.js.map": "/nba-stats-app/static/js/main.f51979d9.chunk.js.map",
     "runtime-main.js": "/nba-stats-app/static/js/runtime-main.11b682b5.js",
     "runtime-main.js.map": "/nba-stats-app/static/js/runtime-main.11b682b5.js.map",
     "static/js/2.14632e2e.chunk.js": "/nba-stats-app/static/js/2.14632e2e.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.11b682b5.js",
     "static/js/2.14632e2e.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.bfdb392b.chunk.js"
+    "static/js/main.f51979d9.chunk.js"
   ]
 }
