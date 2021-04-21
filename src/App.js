@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import './App.css';
+
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state={
       playerName: null,
-      playerStats: {}
+      playerStats: {},
+      testing: null
     }
   }
 
@@ -18,6 +21,7 @@ handleSubmit = (e) => {
   } 
   else {
     this.getPlayerId()
+    
   }
 }
 
@@ -27,6 +31,11 @@ handleChange = (event) => {
     this.setState({playerName: replace})
   } 
 }
+
+// calculateFG = () => {
+//   const eFG = (this.state.playerStats["fgm"] + (0.5 * this.state.playerStats["fg3m"])) / this.state.playerStats["fga"]
+//   console.log(eFG)
+// }
 
   getPlayerId = () => {
     axios.get(`https://www.balldontlie.io/api/v1/players?search=${this.state.playerName}`)
@@ -45,11 +54,16 @@ handleChange = (event) => {
     })
   }
 
+  geteFG = () => {
+    this.setState({testing:(this.state.playerStats["fgm"] + (0.5 * this.state.playerStats["fg3m"])) / (this.state.playerStats["fga"])})
+  }
+
   getPlayerStats = (playerId) => {
     axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]=${playerId}`)
     .then(async res => {
       console.log(res.data.data)
       this.setState({ playerStats: res.data.data[0]})
+      this.geteFG()
     }).catch(err => {
       console.log(err)
     })
@@ -57,7 +71,10 @@ handleChange = (event) => {
   
   render(){
   return (
-    <div className="App">
+    <div>
+      <h1>
+        NBA Stats App
+      </h1>
      <form onSubmit={this.handleSubmit}>
        <label>
          Name
@@ -70,13 +87,35 @@ handleChange = (event) => {
        </label>
        <input type="submit" value="Submit"/>
      </form>
-     games played: {this.state.playerStats["games_played"]}
+     Points: {this.state.playerStats["pts"]}
      <br />
-     points averaged: {this.state.playerStats["pts"]}
+     Rebounds: {this.state.playerStats["reb"]}
      <br />
-     rebounds averaged: {this.state.playerStats["reb"]}
+     Assists: {this.state.playerStats["ast"]}
      <br />
-     assists averaged: {this.state.playerStats["ast"]}
+     Steals: {this.state.playerStats["stl"]}
+     <br />
+     Blocks: {this.state.playerStats["blk"]}
+     <br />
+     Turnovers: {this.state.playerStats["turnover"]}
+     <br />
+     Field Goals Made: {this.state.playerStats["fgm"]}
+     <br />
+     Field Goals Attempted: {this.state.playerStats["fga"]}
+     <br />
+     Free Throws Made: {this.state.playerStats["ftm"]}
+     <br/>
+     Free Throws Attempted: {this.state.playerStats["fta"]}
+     <h2>
+       Shooting Percentages
+     </h2>
+     Field Goal Percentage: {this.state.playerStats["fg_pct"]}
+     <br/>
+     Three Point Field Goal Percentage: {this.state.playerStats["fg3_pct"]}
+     <br/>
+     Free Throw Percentage: {this.state.playerStats["ft_pct"]}
+     <br/>
+     Effective Field Goal Percentage: {this.state.testing}
     </div>
   );
 }
