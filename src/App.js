@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
+// import NavBar from "./Components/NavBar"
 import axios from "axios";
-import './App.css';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-
+import {Button} from '@material-ui/core';
 
 const App = () => {
 
@@ -12,15 +12,26 @@ const App = () => {
   const [value] = useState()
 
   const useStyles = makeStyles((theme) => ({
+    test: {
+      // backgroundColor: "#800",
+    },
+    text: {
+      alignContent: 'center', 
+      display: "inline-block"
+    },
+    styles: {
+      display: "flex",
+      flexDirection: "row",
+
+    },
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        width: '25ch',
+        display: "inline-block"
       },
     },
   }));
 
-  const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,29 +79,34 @@ const App = () => {
     })
   }
 
-  return (
-      <div>
-        <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="standard-basic" label="Standard" />
-      <TextField id="filled-basic" label="Filled" variant="filled" />
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-    </form>
+  const classes = useStyles();  
 
-        <h1>
+  return (
+    <>
+      <div className = {classes.test}>
+        <div>
           NBA Stats App
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name
-            <input 
+        </div>
+        <div className = {classes.styles}>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label = "Player Name"
               type="text"
               value={value}
               onChange={handleChange}
               placeholder="please enter players name"
+              className = {classes.text}
             />
-          </label>
-          <input type="submit" value="Submit"/>
-        </form>
+            <div className={classes.root}>
+              <Button 
+                variant="contained" 
+                type="submit" 
+                value="Submit" 
+                color="primary" 
+              >Submit</Button>
+            </div>
+          </form>
+        </div>
         Points: {playerStats["pts"]}
         <br />
         Rebounds: {playerStats["reb"]}
@@ -120,7 +136,7 @@ const App = () => {
         Free Throw Percentage: {playerStats["ft_pct"]}
         <br/> 
       </div>
-   
+     </>
   );
 }
 export default App;
