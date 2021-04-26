@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 // import NavBar from "./Components/NavBar"
-import axios from "axios";
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import {Button} from '@material-ui/core';
 import StatsPage from './Pages/Stats.js'
+import HomePage from './Pages/Home.js'
+import {Route, BrowserRouter as Router} from "react-router-dom"
 
 const App = () => {
 
   return (
-    <StatsPage/>
+    <Router>
+      <Route path="/" exact component = {HomePage}/>
+      <Route path="/stat" exact component = {StatsPage}/>
+    </Router>
   );
 }
 export default App;
