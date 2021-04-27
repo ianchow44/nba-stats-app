@@ -4,6 +4,7 @@ import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import {Button} from '@material-ui/core';
+import FantasyCalculation from "../Functions/FantasyCalc"
 
 const StatsPage = () => {
 
@@ -51,23 +52,55 @@ const StatsPage = () => {
   }));
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(playerName)
     if (!playerName || playerName.length < 1) {
       alert("Please type player's name!")
     } 
     else {
-      getPlayerId()
+      await getPlayerId()
     }
+    let value2 = {
+      points: pointsValue,
+        assists: assistsValue,
+        rebounds: reboundsValue,
+        steals: stealsValue,
+        blocks: blocksValue,
+        TOs: turnoversValue,
+        FGM: fgmValue,
+        FGA: fgaValue,
+        FTM: ftmValue,
+        FTA: ftaValue
+    }
+    let res = FantasyCalculation(value2, playerStats);
+    console.log(res)
   }
+
+  const handleTest = () => {
+    let value2 = {
+      points: pointsValue,
+        assists: assistsValue,
+        rebounds: reboundsValue,
+        steals: stealsValue,
+        blocks: blocksValue,
+        TOs: turnoversValue,
+        FGM: fgmValue,
+        FGA: fgaValue,
+        FTM: ftmValue,
+        FTA: ftaValue
+    }
+    let res = FantasyCalculation(value2, playerStats);
+    console.log(res)
+  }
+
 
   const handleChange = (event) => {
     setplayerName(event.target.value)
     
   }
 
-  const getPlayerId = (playerId) => {
+  const getPlayerId = async (playerId) => {
     console.log(playerId)
     axios.get(`https://www.balldontlie.io/api/v1/players?search=${playerName.split(" ").join("_")}`)
     .then(async res => {
@@ -88,7 +121,7 @@ const StatsPage = () => {
     //   setTesting(playerStats["fgm"] + (0.5 * playerStats["fg3m"])) / (playerStats["fga"])
     // }
 
-  const getPlayerStats = (playerId) => {
+  const getPlayerStats = async (playerId) => {
     axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]=${playerId}`)
     .then(async res => {
       console.log(res.data.data)
@@ -204,6 +237,7 @@ const StatsPage = () => {
                   type="submit" 
                   value="Submit" 
                   color="primary" 
+                 
                 >Submit</Button>
               </div>
             </form>
@@ -241,12 +275,22 @@ const StatsPage = () => {
             <br/> 
           </div>
           <div className = {classes.item1}>
-            Fantasy Points: 
+            Fantasy Points: {playerStats['pts']*5}
             
           </div>
         </div>
         
       </div>
+      <Button
+      variant="contained" 
+      type="submit" 
+      value="Submit" 
+      color="primary" 
+    
+        onClick={handleTest}
+      >
+          Test
+      </Button>
     </div>
   );
 }
