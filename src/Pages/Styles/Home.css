@@ -1,0 +1,81 @@
+html, body{
+    
+}
+
+.Home{
+    background-color: bisque;  
+    background: url(../../Images/nbaBackground.jpg) no-repeat center center fixed; 
+    background-size: 100%;
+    min-height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.Heading{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 200px;
+}
+
+.Title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin-left: 100px;
+}
+
+.Title h1{
+    margin: 0;
+    padding: 0;
+    font-size: 4rem;
+}
+
+#NBA{
+    color: blue;
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+#STATS{
+    color: red;
+    text-shadow: -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
+}
+
+.NBALogo img{
+    height: 150px;
+    margin-left: 20px;
+    position: relative;
+    top: 5px;
+}
+
+.Glass{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+#searchbarId{
+    width: 500px;
+}
+
+.root{
+    padding: 2px 4px;
+    display: 'flex';
+    justify-content: space-between;
+    align-items: 'center';
+}
+
+.input{
+    margin-left: 10px;
+    width: 350px;
+}
+
+.iconButton{
+    
+    padding: 10px;
+}

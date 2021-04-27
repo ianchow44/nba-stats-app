@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <Router>
-      <Route path="/" exact component = {HomePage}/>
+      <Route path="/nba-stats-app" exact component = {HomePage}/>
       <Route path="/stat" exact component = {StatsPage}/>
     </Router>
   );
