@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import {Button} from '@material-ui/core';
 import FantasyCalculation from "../Functions/FantasyCalc"
+import {useParams} from "react-router-dom";
 
 const StatsPage = () => {
 
@@ -21,6 +22,7 @@ const StatsPage = () => {
   const [fgaValue, setfgaValue] = useState()
   const [ftmValue, setftmValue] = useState()
   const [ftaValue, setftaValue] = useState()
+  const [firstLoad, setfirstLoad] = useState(true);
 
 
   const useStyles = makeStyles((theme) => ({
@@ -102,7 +104,7 @@ const StatsPage = () => {
 
   const getPlayerId = async (playerId) => {
     console.log(playerId)
-    axios.get(`https://www.balldontlie.io/api/v1/players?search=${playerName.split(" ").join("_")}`)
+    axios.get(`https://www.balldontlie.io/api/v1/players?search=${playerId.split(" ").join("_")}`)
     .then(async res => {
     if(res.data.data[0] === undefined){
       alert("This player is either injured or hasn't played yet!")
@@ -132,6 +134,16 @@ const StatsPage = () => {
   }
 
   const classes = useStyles();  
+
+  const {search} = useParams();
+  console.log(search);
+  if(firstLoad){
+    getPlayerId(search);
+    setfirstLoad(false);
+  }
+  
+  
+
 
   return (
     <div>
