@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import axios from "axios";
 import db from "../Database/database"
 import { useLiveQuery } from "dexie-react-hooks";
+import { Button } from '@material-ui/core';
 
 
 function HomePage(){
@@ -17,15 +18,17 @@ function HomePage(){
     const [playerName, setplayerName] = useState('');
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    let fantasyPointList = useLiveQuery(() => db.fantasyPoints.toArray(), []) 
-    if(!fantasyPointList){
-        fantasyPointList = {
-            0: {
-                name:""
-            }
-        }
-    }
+    var fantasyPointList = useLiveQuery(() => db.fantasyPoints.toArray(), []) 
     console.log(fantasyPointList)
+    if(!fantasyPointList){
+        return(
+            <div>
+                
+            </div>
+        );
+    }
+
+    
     
 
     if(formSubmitted){
@@ -65,12 +68,129 @@ function HomePage(){
     const handlePointsChange = async (e) => {
         console.log(fantasyPointList)
         if(fantasyPointList.length == 0){
-            await db.fantasyPoints.add({name:"user", Points: 0, Assists: 0, Rebounds: 0, Steals: 0, Blocks: 0, TOs: 0, FGM: 0, FGA: 0, FTM: 0, FTA: 0, T: 0, TPA: 0})
-            console.log("added")
+            await db.fantasyPoints.add({name:"user"})
+            
         }
+        console.log(e.target.value)
         db.fantasyPoints.update('user', {Points: e.target.value});
     }
-     //console.log(fantasyPointList[0]["Points"])
+
+    const handleBlocksChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {Blocks: e.target.value});
+    }
+
+    const handleAssitsChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {Assists: e.target.value});
+    }
+
+    const handleReboundsChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {Rebounds: e.target.value});
+    }
+
+    const handleStealsChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {Steals: e.target.value});
+    }
+
+    const handleTOsChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {TOs: e.target.value});
+    }
+
+    const handleFGMChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {FGM: e.target.value});
+    }
+
+    const handleFGAChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {FGA: e.target.value});
+    }
+
+    const handleFTMChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {FTM: e.target.value});
+    }
+
+    const handleFTAChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {FTA: e.target.value});
+    }
+
+    const handleTPMChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {TPM: e.target.value});
+    }
+
+    const handleTPAChange = async (e) => {
+        console.log(fantasyPointList)
+        if(fantasyPointList.length == 0){
+            await db.fantasyPoints.add({name:"user"})
+            
+        }
+        console.log(e.target.value)
+        db.fantasyPoints.update('user', {TPA: e.target.value});
+    }
+
+    
+
+    const test = (e) => {
+        db.fantasyPoints.clear();
+    }
+    console.log(fantasyPointList[0])
     return(
         <div className='Home'>
             <div className='Heading'>
@@ -111,7 +231,7 @@ function HomePage(){
                 <form className='Points' noValidate autoComplete='off'>
                     <div className='PointsInput'>
                         <TextField
-                            defaultValue={0}
+                            defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["Points"] : null}
                             //value={fantasyPointList[0]["Points"]}
                             id='Points'
                             label='Points'
@@ -126,7 +246,7 @@ function HomePage(){
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                            //defaultValue = {fantasyPointList[0]["Assists"]}
+                            defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["Assists"] : null}
                             id='Assists'
                             label='Assists'
                             type="number"
@@ -134,13 +254,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleAssitsChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                            //defaultValue = {fantasyPointList[0]["Rebounds"]}
+                            defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["Rebounds"] : null}
                             id='Rebounds'
                             label='Rebounds'
                             type="number"
@@ -148,13 +268,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleReboundsChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["Steals"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["Steals"] : null}
                             id='Steals'
                             label='Steals'
                             type="number"
@@ -162,13 +282,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleStealsChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["Blocks"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["Blocks"] : null}
                             id='Blocks'
                             label='Blocks'
                             type="number"
@@ -176,14 +296,14 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleBlocksChange}
                             
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["TOs"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["TOs"] : null}
                             id='TOs'
                             label='TOs'
                             type="number"
@@ -191,13 +311,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleTOsChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["FGM"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["FGM"] : null}
                             id='FGM'
                             label='FGM'
                             type="number"
@@ -205,13 +325,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleFGMChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["FGA"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["FGA"] : null}
                             id='FGA'
                             label='FGA'
                             type="number"
@@ -219,13 +339,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleFGAChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["FTM"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["FTM"] : null}
                             id='FTM'
                             label='FTM'
                             type="number"
@@ -233,13 +353,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleFTMChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["FTA"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["FTA"] : null}
                             id='FTA'
                             label='FTA'
                             type="number"
@@ -247,13 +367,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleFTAChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["TPM"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["TPM"] : null}
                             id='3PM'
                             label='3PM'
                             type="number"
@@ -261,13 +381,13 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleTPMChange}
                         > 
                         </TextField>
                     </div>
                     <div className='PointsInput'>
                         <TextField
-                        //defaultValue = {fantasyPointList[0]["TPA"]}
+                        defaultValue = {fantasyPointList[0] ? fantasyPointList[0]["TPA"] : null}
                             id='3PA'
                             label='3PA'
                             type="number"
@@ -275,7 +395,7 @@ function HomePage(){
                             color="primary"
                             className="InputClass"
                             size='small'
-                            onChange={handleFantasyChange}
+                            onChange={handleTPAChange}
                         > 
                         </TextField>
                     </div>
@@ -284,6 +404,8 @@ function HomePage(){
             
             <p>HomePage</p>
             <a href="/stat">Click</a>
+            <Button
+            onClick={test}>Button</Button>
         </div>
     )
 }
