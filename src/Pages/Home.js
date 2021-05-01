@@ -204,7 +204,10 @@ function HomePage(){
                 <li className = "link"> <a className = "navbarText" href="a"> About </a></li>
                 </ul>
             </div>
-
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <div className='Heading'>
                 <div className='Title'>
                     <h1 id='NBA'>

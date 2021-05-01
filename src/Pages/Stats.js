@@ -26,33 +26,7 @@ const StatsPage = () => {
   const [firstLoad, setfirstLoad] = useState(true);
 
 
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      display: "flex",
-    },
 
-    item1: {
-      marginLeft: "200px"
-    },
-
-    text: {
-      alignContent: 'center', 
-      display: "inline-block",
-      marginLeft: "10px",
-      marginRight: "10px",
-    },
-    topContainer: {
-      display: "flex",
-      flexDirection: "row",
-
-    },
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        display: "inline-block"
-      },
-    },
-  }));
 
 
   const handleSubmit = async (e) => {
@@ -134,7 +108,7 @@ const StatsPage = () => {
     })
   }
 
-  const classes = useStyles();  
+
 
   const {search} = useParams();
   console.log(search);
@@ -147,8 +121,7 @@ const StatsPage = () => {
 
 
   return (
-    <div className = "twoHome">
-
+    <>
       <div className = "nav">
         <div className = "navbarText">
          <strong>NBA Stats App</strong> 
@@ -160,160 +133,76 @@ const StatsPage = () => {
         </ul>
       </div>
 
-      <div>
-        <div className = {classes.topContainer}>
-          {/* <div>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                label = "Player Name"
-                type="text"
-                value={value}
-                onChange={handleChange}
-                placeholder="please enter players name"
-                className = {classes.text}
-              />
-              <br/>
-              <TextField
-                label = "Points Worth"
-                type="text"
-                value={pointsValue}
-                onChange={(event) => { setpointsValue(event.target.value) }}
-                placeholder="Points Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "Assists Worth"
-                type="text"
-                value={assistsValue}
-                onChange={(event) => { setassistsValue(event.target.value) }}
-                placeholder="Assists Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "Rebounds Worth"
-                type="text"
-                value={reboundsValue}
-                onChange={(event) => { setreboundsValue(event.target.value) }}
-                placeholder="Rebounds Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "Steals Worth"
-                type="text"
-                value={stealsValue}
-                onChange={(event) => { setstealsValue(event.target.value) }}
-                placeholder="Steals Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "Blocks Worth"
-                type="text"
-                value={blocksValue}
-                onChange={(event) => { setblocksValue(event.target.value) }}
-                placeholder="Blocks Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "Turnovers Worth"
-                type="text"
-                value={turnoversValue}
-                onChange={(event) => { setturnoversValue(event.target.value) }}
-                placeholder="Turnovers Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "FGM Worth"
-                type="text"
-                value={fgmValue}
-                onChange={(event) => { setfgmValue(event.target.value) }}
-                placeholder="FGM Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "FGA Worth"
-                type="text"
-                value={fgaValue}
-                onChange={(event) => { setfgaValue(event.target.value) }}
-                placeholder="FGA Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "FTM Worth"
-                type="text"
-                value={ftmValue}
-                onChange={(event) => { setftmValue(event.target.value) }}
-                placeholder="FTM Worth"
-                className = {classes.text}
-              />
-              <TextField
-                label = "FTA Worth"
-                type="text"
-                value={ftaValue}
-                onChange={(event) => { setftaValue(event.target.value) }}
-                placeholder="FTA Worth"
-                className = {classes.text}
-              />
-              <div className={classes.root}>
-                <Button 
-                  variant="contained" 
-                  type="submit" 
-                  value="Submit" 
-                  color="primary" 
-                 
-                >Submit</Button>
-              </div>
-            </form>
-          </div> */}
-        </div>
-        <div className = {classes.container}>
-          <div className = "regularStats">
-            Points: {playerStats["pts"]}
-            <br />
-            Rebounds: {playerStats["reb"]}
-            <br />
-            Assists: {playerStats["ast"]}
-            <br />
-            Steals: {playerStats["stl"]}
-            <br />
-            Blocks: {playerStats["blk"]}
-            <br />
-            Turnovers: {playerStats["turnover"]}
-            <br />
-            Field Goals Made: {playerStats["fgm"]}
-            <br />
-            Field Goals Attempted: {playerStats["fga"]}
-            <br />
-            Free Throws Made: {playerStats["ftm"]}
-            <br/>
-            Free Throws Attempted: {playerStats["fta"]}
-            <br/>
-            Shooting Percentages
-            <br/>
-            Field Goal Percentage: {playerStats["fg_pct"]}
-            <br/>
-            Three Point Field Goal Percentage: {playerStats["fg3_pct"]}
-            <br/>
-            Free Throw Percentage: {playerStats["ft_pct"]}
-            <br/> 
-          </div>
-          <div className = {classes.item1}>
-            Fantasy Points: {playerStats['pts']*5}
-            
-          </div>
-        </div>
-        
+      <div className = "playerName">
+        PUT SEARCHED PLAYER NAME HERE
       </div>
-      <Button
-      variant="contained" 
-      type="submit" 
-      value="Submit" 
-      color="primary" 
-    
-        onClick={handleTest}
-      >
-          Test
-      </Button>
-    </div>
+
+      <div className = "container">
+        <div className = "regularStats">
+          <strong> NBA Stats </strong>
+          <br/>
+          <br/>
+          Points: {playerStats["pts"]}
+          <br />
+          Rebounds: {playerStats["reb"]}
+          <br />
+          Assists: {playerStats["ast"]}
+          <br />
+          Steals: {playerStats["stl"]}
+          <br />
+          Blocks: {playerStats["blk"]}
+          <br />
+          Turnovers: {playerStats["turnover"]}
+          <br />
+          Field Goals Made: {playerStats["fgm"]}
+          <br />
+          Field Goals Attempted: {playerStats["fga"]}
+          <br />
+          Free Throws Made: {playerStats["ftm"]}
+          <br/>
+          Free Throws Attempted: {playerStats["fta"]}
+          <br/>
+          <br/>
+          <strong> Shooting Percentages</strong>
+          <br/>
+          Field Goal Percentage: {playerStats["fg_pct"]}
+          <br/>
+          Three Point Field Goal Percentage: {playerStats["fg3_pct"]}
+          <br/>
+          Free Throw Percentage: {playerStats["ft_pct"]}
+          <br/> 
+        </div>
+        <div className = "regularStats">
+          <strong> Fantasy Points </strong>
+          <br/>
+          <br/>
+          Points: 
+          <br />
+          Rebounds: 
+          <br />
+          Assists: 
+          <br />
+          Steals: 
+          <br />
+          Blocks: 
+          <br />
+          Turnovers: 
+          <br />
+          Field Goals Made: 
+          <br />
+          Field Goals Attempted: 
+          <br />
+          Free Throws Made: 
+          <br/>
+          Free Throws Attempted: 
+          <br/>
+
+        </div>
+      </div>
+      <div className = "totalPoints">
+        Total Fantasy Points: 
+      </div>
+    </>
   );
 }
 export default StatsPage;

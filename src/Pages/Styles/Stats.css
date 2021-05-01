@@ -1,20 +1,24 @@
-.twoHome{
-    background-color: white;  
-    background-size: center;
-    background-position: center;
-    height: 100vh;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    margin: "0";
-    padding: "0";
-    box-sizing: "border-box";
-
+.container {
+    display: flex;
+    justify-content: space-around;
 }
 
 .regularStats {
-    color: "white"
+    padding-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.playerName {
+    text-align: center;
+    padding-top: 70px;
+    font-size: 18px;
+}
+
+.totalPoints {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 18px;
 }
 
 .navbarLinks {
@@ -35,7 +39,8 @@
     justify-content: space-around;
     min-height: 8vh; 
     background-color: black;
-    /* position: absolute; */
+    position: fixed;
     width: 100%;
     align-items: center;
+    z-index:1;
 }
