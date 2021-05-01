@@ -1,0 +1,41 @@
+.twoHome{
+    background-color: white;  
+    background-size: center;
+    background-position: center;
+    height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: "0";
+    padding: "0";
+    box-sizing: "border-box";
+
+}
+
+.regularStats {
+    color: "white"
+}
+
+.navbarLinks {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0;
+}
+
+.navbarText {
+    color: white;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    min-height: 8vh; 
+    background-color: black;
+    /* position: absolute; */
+    width: 100%;
+    align-items: center;
+}
