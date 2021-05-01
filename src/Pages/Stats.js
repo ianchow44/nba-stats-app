@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Button} from '@material-ui/core';
 import FantasyCalculation from "../Functions/FantasyCalc"
 import {useParams} from "react-router-dom";
+import './Styles/Stats.css';
 
 const StatsPage = () => {
 
@@ -146,13 +147,22 @@ const StatsPage = () => {
 
 
   return (
-    <div>
-      <div>
-        <div>
-          NBA Stats App
+    <div className = "twoHome">
+
+      <div className = "nav">
+        <div className = "navbarText">
+         <strong>NBA Stats App</strong> 
         </div>
+        <ul className = "navbarLinks">
+          <li className = "link"> <a className = "navbarText" href="../nba-stats-app"> Search a Player </a></li>
+          <li className = "link"> <a className = "navbarText" href="a"> My Roster </a></li>
+          <li className = "link"> <a className = "navbarText" href="a"> About </a></li>
+        </ul>
+      </div>
+
+      <div>
         <div className = {classes.topContainer}>
-          <div>
+          {/* <div>
             <form onSubmit={handleSubmit}>
               <TextField
                 label = "Player Name"
@@ -253,10 +263,10 @@ const StatsPage = () => {
                 >Submit</Button>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
         <div className = {classes.container}>
-          <div>
+          <div className = "regularStats">
             Points: {playerStats["pts"]}
             <br />
             Rebounds: {playerStats["reb"]}
