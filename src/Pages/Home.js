@@ -121,8 +121,9 @@ function HomePage(){
             await db.fantasyPoints.add({name:"user"})
             
         }
-        console.log(e.target.value)
-        db.fantasyPoints.update('user', {TOs: e.target.value});
+        let value = e.target.value < 0 ? e.target.value : -e.target.value;
+        console.log(value)
+        db.fantasyPoints.update('user', {TOs: value});
     }
 
     const handleFGMChange = async (e) => {
@@ -204,8 +205,6 @@ function HomePage(){
                 <li className = "link"> <a className = "navbarText" href="a"> About </a></li>
                 </ul>
             </div>
-            <br/>
-            <br/>
             <br/>
             <br/>
             <div className='Heading'>

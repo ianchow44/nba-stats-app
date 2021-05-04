@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 // import NavBar from "./Components/NavBar"
+import { Button } from '@material-ui/core';
 import axios from "axios";
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import {Button} from '@material-ui/core';
 import FantasyCalculation from "../Functions/FantasyCalc"
 import {useParams} from "react-router-dom";
 import './Styles/Stats.css';
+import db from "../Database/database"
 
 const StatsPage = () => {
 
@@ -23,58 +22,27 @@ const StatsPage = () => {
   const [fgaValue, setfgaValue] = useState()
   const [ftmValue, setftmValue] = useState()
   const [ftaValue, setftaValue] = useState()
+  const [fantasyValues, setFantasyValues] = useState({})
   const [firstLoad, setfirstLoad] = useState(true);
+  const [secondLoad, setSecondLoad] = useState(false);
 
-
-
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(playerName)
-    if (!playerName || playerName.length < 1) {
-      alert("Please type player's name!")
-    } 
-    else {
-      await getPlayerId()
-    }
+  const getFantasyPoints = async(playerStats2) => {
+    const value = await db.fantasyPoints.get("user");
     let value2 = {
-      points: pointsValue,
-        assists: assistsValue,
-        rebounds: reboundsValue,
-        steals: stealsValue,
-        blocks: blocksValue,
-        TOs: turnoversValue,
-        FGM: fgmValue,
-        FGA: fgaValue,
-        FTM: ftmValue,
-        FTA: ftaValue
+      points: value.Points,
+        assists: value.Assists,
+        rebounds: value.Rebounds,
+        steals: value.Steals,
+        blocks: value.Blocks,
+        TOs: value.TOs,
+        FGM: value.FGM,
+        FGA: value.FGA,
+        FTM: value.FTM,
+        FTA: value.FTA
     }
-    let res = FantasyCalculation(value2, playerStats);
-    console.log(res)
-  }
-
-  const handleTest = () => {
-    let value2 = {
-      points: pointsValue,
-        assists: assistsValue,
-        rebounds: reboundsValue,
-        steals: stealsValue,
-        blocks: blocksValue,
-        TOs: turnoversValue,
-        FGM: fgmValue,
-        FGA: fgaValue,
-        FTM: ftmValue,
-        FTA: ftaValue
-    }
-    let res = FantasyCalculation(value2, playerStats);
-    console.log(res)
-  }
-
-
-  const handleChange = (event) => {
-    setplayerName(event.target.value)
-    
+    let res = FantasyCalculation(value2, playerStats2);
+    setFantasyValues(res);
+    console.log(res);
   }
 
   const getPlayerId = async (playerId) => {
@@ -86,6 +54,8 @@ const StatsPage = () => {
     } else if(res.data.data.length > 1){
       alert("Pleases specify the name more!")
       } else{
+        console.log(res.data.data[0])
+        setplayerName(res.data.data[0].first_name + " " + res.data.data[0].last_name)
         await getPlayerStats(res.data.data[0].id)
         }
       }).catch(err => {
@@ -93,22 +63,15 @@ const StatsPage = () => {
       })
     }
 
-    // const geteFG = () => {
-      // this.setState({testing:(this.state.playerStats["fgm"] + (0.5 * this.state.playerStats["fg3m"])) / (this.state.playerStats["fga"])})
-    //   setTesting(playerStats["fgm"] + (0.5 * playerStats["fg3m"])) / (playerStats["fga"])
-    // }
-
   const getPlayerStats = async (playerId) => {
     axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=2020&player_ids[]=${playerId}`)
     .then(async res => {
-      console.log(res.data.data)
       setplayerStats(res.data.data[0])
+      getFantasyPoints(res.data.data[0]);
     }).catch(err => {
       console.log(err)
     })
   }
-
-
 
   const {search} = useParams();
   console.log(search);
@@ -117,9 +80,6 @@ const StatsPage = () => {
     setfirstLoad(false);
   }
   
-  
-
-
   return (
     <>
       <div className = "nav">
@@ -134,7 +94,7 @@ const StatsPage = () => {
       </div>
 
       <div className = "playerName">
-        PUT SEARCHED PLAYER NAME HERE
+        {playerName}
       </div>
 
       <div className = "container">
@@ -176,31 +136,31 @@ const StatsPage = () => {
           <strong> Fantasy Points </strong>
           <br/>
           <br/>
-          Points: 
+          Points: {fantasyValues["points"]}
           <br />
-          Rebounds: 
+          Rebounds: {fantasyValues["rebounds"]}
           <br />
-          Assists: 
+          Assists: {fantasyValues["assists"]}
           <br />
-          Steals: 
+          Steals: {fantasyValues["steals"]}
           <br />
-          Blocks: 
+          Blocks: {fantasyValues["blocks"]}
           <br />
-          Turnovers: 
+          Turnovers: {fantasyValues["TOs"]}
           <br />
-          Field Goals Made: 
+          Field Goals Made: {fantasyValues["FGM"]}
           <br />
-          Field Goals Attempted: 
+          Field Goals Attempted: {fantasyValues["FGA"]}
           <br />
-          Free Throws Made: 
+          Free Throws Made: {fantasyValues["FTM"]}
           <br/>
-          Free Throws Attempted: 
+          Free Throws Attempted: {fantasyValues["FTA"]}
           <br/>
 
         </div>
       </div>
       <div className = "totalPoints">
-        Total Fantasy Points: 
+        Total Fantasy Points: {fantasyValues.total}
       </div>
     </>
   );
