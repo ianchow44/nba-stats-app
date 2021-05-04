@@ -1,0 +1,22 @@
+.navbarLinks {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0;
+}
+
+.navbarText {
+    color: white;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    min-height: 8vh; 
+    background-color: black;
+    width: 100%;
+    align-items: center;
+    z-index:1;
+}

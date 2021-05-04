@@ -6,6 +6,8 @@ import FantasyCalculation from "../Functions/FantasyCalc"
 import {useParams} from "react-router-dom";
 import './Styles/Stats.css';
 import db from "../Database/database"
+import NavBar from './Nav';
+
 
 const StatsPage = () => {
 
@@ -79,19 +81,10 @@ const StatsPage = () => {
     getPlayerId(search);
     setfirstLoad(false);
   }
-  
+   
   return (
     <>
-      <div className = "nav">
-        <div className = "navbarText">
-         <strong>NBA Stats App</strong> 
-        </div>
-        <ul className = "navbarLinks">
-          <li className = "link"> <a className = "navbarText" href="../nba-stats-app"> Search a Player </a></li>
-          <li className = "link"> <a className = "navbarText" href="/roster"> My Roster </a></li>
-          <li className = "link"> <a className = "navbarText" href="a"> About </a></li>
-        </ul>
-      </div>
+      <NavBar/>
 
       <div className = "playerName">
         {playerName}

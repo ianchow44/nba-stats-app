@@ -11,6 +11,7 @@ import axios from "axios";
 import db from "../Database/database"
 import { useLiveQuery } from "dexie-react-hooks";
 import { Button } from '@material-ui/core';
+import NavBar from './Nav';
 
 
 function HomePage(){
@@ -195,16 +196,7 @@ function HomePage(){
     return(
         <div className='Home'>
 
-            <div className = "nav">
-                <div className = "navbarText">
-                <strong>NBA Stats App</strong> 
-                </div>
-                <ul className = "navbarLinks">
-                <li className = "link"> <a className = "navbarText" href="../nba-stats-app"> Search a Player </a></li>
-                <li className = "link"> <a className = "navbarText" href="/roster"> My Roster </a></li>
-                <li className = "link"> <a className = "navbarText" href="a"> About </a></li>
-                </ul>
-            </div>
+            <NavBar/>
             <br/>
             <br/>
             <div className='Heading'>
