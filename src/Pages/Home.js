@@ -68,7 +68,7 @@ function HomePage(){
 
     const handlePointsChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -78,7 +78,7 @@ function HomePage(){
 
     const handleBlocksChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -88,7 +88,7 @@ function HomePage(){
 
     const handleAssitsChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -98,7 +98,7 @@ function HomePage(){
 
     const handleReboundsChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -108,7 +108,7 @@ function HomePage(){
 
     const handleStealsChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -118,7 +118,7 @@ function HomePage(){
 
     const handleTOsChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -129,7 +129,7 @@ function HomePage(){
 
     const handleFGMChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length = 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -139,7 +139,7 @@ function HomePage(){
 
     const handleFGAChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -149,7 +149,7 @@ function HomePage(){
 
     const handleFTMChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -159,7 +159,7 @@ function HomePage(){
 
     const handleFTAChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -169,7 +169,7 @@ function HomePage(){
 
     const handleTPMChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -179,7 +179,7 @@ function HomePage(){
 
     const handleTPAChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length == 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
