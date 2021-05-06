@@ -10,8 +10,7 @@ const NavBar = () => {
             </div>
             <ul className = "navbarLinks">
             <li className = "link"> <a className = "navbarText" href="../nba-stats-app"> Search a Player </a></li>
-            <li className = "link"> <a className = "navbarText" href="/roster"> My Roster </a></li>
-            <li className = "link"> <a className = "navbarText" href="a"> About </a></li>
+            <li className = "link"> <a className = "navbarText" href="/nba-stats-app/roster"> My Roster </a></li>
             </ul>
         </div>
     );
