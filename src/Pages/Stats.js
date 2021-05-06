@@ -6,7 +6,6 @@ import FantasyCalculation from "../Functions/FantasyCalc"
 import {useParams} from "react-router-dom";
 import './Styles/Stats.css';
 import db from "../Database/database"
-import NavBar from './Nav';
 
 
 
@@ -92,7 +91,15 @@ const StatsPage = () => {
    
   return (
     <>
-      <NavBar/>
+              <div className = "nav">
+            <div className = "navbarText">
+            <strong>NBA Stats App</strong> 
+            </div>
+            <ul className = "navbarLinks">
+            <li className = "link"> <a className = "navbarText" href="../"> Search a Player </a></li>
+            <li className = "link"> <a className = "navbarText" href="/nba-stats-app/roster"> My Roster </a></li>
+            </ul>
+        </div>
 
       <div className = "playerName">
         {playerName}
