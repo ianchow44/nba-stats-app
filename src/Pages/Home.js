@@ -10,7 +10,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import axios from "axios";
 import db from "../Database/database"
 import { useLiveQuery } from "dexie-react-hooks";
-import { Button } from '@material-ui/core';
 import NavBar from './Nav';
 
 
@@ -56,15 +55,15 @@ function HomePage(){
         setplayerName(e.target.value);
     }
 
-    const handleFantasyChange = async (e) => {
-        // if(fantasyPointList.length == 0){
-        //     await db.fantasyPoints.add({name:"user", Points: 0, Assists: 0, Rebounds: 0, Steals: 0, Blocks: 0, TOs: 0, FGM: 0, FGA: 0, FTM: 0, FTA: 0, T: 0, TPA: 0})
-        //     console.log("added")
-        // }
-        // let temp = {}
-        // db.fantasyPoints.update('user', {Points: e.target.value});
-        // console.log("here");
-    }
+    // const handleFantasyChange = async (e) => {
+    //     // if(fantasyPointList.length == 0){
+    //     //     await db.fantasyPoints.add({name:"user", Points: 0, Assists: 0, Rebounds: 0, Steals: 0, Blocks: 0, TOs: 0, FGM: 0, FGA: 0, FTM: 0, FTA: 0, T: 0, TPA: 0})
+    //     //     console.log("added")
+    //     // }
+    //     // let temp = {}
+    //     // db.fantasyPoints.update('user', {Points: e.target.value});
+    //     // console.log("here");
+    // }
 
     const handlePointsChange = async (e) => {
         console.log(fantasyPointList)
@@ -129,7 +128,7 @@ function HomePage(){
 
     const handleFGMChange = async (e) => {
         console.log(fantasyPointList)
-        if(fantasyPointList.length = 0){
+        if(fantasyPointList.length === 0){
             await db.fantasyPoints.add({name:"user"})
             
         }
@@ -189,12 +188,12 @@ function HomePage(){
 
     
 
-    const test = (e) => {
-        db.roster.add({name:"Kevin", Points: 1, Assists: 2, Rebounds: 0, Steals: 0, Blocks: 0, TOs: 0, FGM: 0, FGA: 0, FTM: 0, FTA: 0, TPM: 0, TPA: 0, Total: 1});
-    }
-    const clear = (e) => {
-        db.roster.clear();
-    }
+    // const test = (e) => {
+    //     db.roster.add({name:"Kevin", Points: 1, Assists: 2, Rebounds: 0, Steals: 0, Blocks: 0, TOs: 0, FGM: 0, FGA: 0, FTM: 0, FTA: 0, TPM: 0, TPA: 0, Total: 1});
+    // }
+    // const clear = (e) => {
+    //     db.roster.clear();
+    // }
     console.log(fantasyPointList[0])
     return(
         <div className='Home'>
@@ -213,7 +212,7 @@ function HomePage(){
                     
                 </div> 
                 <div className='NBALogo'>
-                    <img src={logo}></img>
+                    <img src={logo} alt="text"></img>
                 </div>
 
             </div>
@@ -410,13 +409,7 @@ function HomePage(){
                     </div>
                 </form>
             </div>
-            
-            <p>HomePage</p>
-            <a href="/stat">Click</a>
-            <Button
-            onClick={test}>Button</Button>
-            <Button
-            onClick={clear}>Clear</Button>
+
         </div>
     )
 }

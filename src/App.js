@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import StatsPage from './Pages/Stats.js'
 import HomePage from './Pages/Home.js'
 import RosterPage from './Pages/Roster.js'

@@ -14,20 +14,20 @@ const StatsPage = () => {
 
   const [playerName, setplayerName] = useState(null)
   const [playerStats, setplayerStats] = useState({})
-  const [value] = useState()
-  const [pointsValue, setpointsValue] = useState()
-  const [assistsValue, setassistsValue] = useState()
-  const [reboundsValue, setreboundsValue] = useState()
-  const [stealsValue, setstealsValue] = useState()
-  const [blocksValue, setblocksValue] = useState()
-  const [turnoversValue, setturnoversValue] = useState()
-  const [fgmValue, setfgmValue] = useState()
-  const [fgaValue, setfgaValue] = useState()
-  const [ftmValue, setftmValue] = useState()
-  const [ftaValue, setftaValue] = useState()
+  // const [value] = useState()
+  // const [pointsValue, setpointsValue] = useState()
+  // const [assistsValue, setassistsValue] = useState()
+  // const [reboundsValue, setreboundsValue] = useState()
+  // const [stealsValue, setstealsValue] = useState()
+  // const [blocksValue, setblocksValue] = useState()
+  // const [turnoversValue, setturnoversValue] = useState()
+  // const [fgmValue, setfgmValue] = useState()
+  // const [fgaValue, setfgaValue] = useState()
+  // const [ftmValue, setftmValue] = useState()
+  // const [ftaValue, setftaValue] = useState()
   const [fantasyValues, setFantasyValues] = useState({})
   const [firstLoad, setfirstLoad] = useState(true);
-  const [secondLoad, setSecondLoad] = useState(false);
+  // const [secondLoad, setSecondLoad] = useState(false);
 
   const getFantasyPoints = async(playerStats2) => {
     const value = await db.fantasyPoints.get("user");

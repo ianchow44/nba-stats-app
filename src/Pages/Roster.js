@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './Styles/Roster.css';
 import MaterialTable from 'material-table';
 import db from "../Database/database"
 import { useLiveQuery } from "dexie-react-hooks";
-
+import NavBar from './Nav';
 
 
 const RosterPage = () => {
-    const [firstLoad, setfirstLoad] = useState(true)
+    // const [firstLoad, setfirstLoad] = useState(true)
 
     const [state, setState] = React.useState({
         columns: [
@@ -28,8 +28,7 @@ const RosterPage = () => {
 
         ],
         data: [
-          { name: 'Lebron James', Total: 40, Points: 28, Rebounds: 6, Assists: 5, Steals: 2.3, Blocks: 1, TOs: 3.1, FGM: 12, FGA: 21, FTM: 6, FTA: 9, TPM: 3, TPA: 5},
-          { name: ' James', Total: 40, Points: 28, Rebounds: 6, Assists: 5, Steals: 2.3, Blocks: 1, TOs: 3.1, FGM: 12, FGA: 21, FTM: 6, FTA: 9, TPM: 3, TPA: 5},
+       
 
         ],
       });
@@ -54,15 +53,7 @@ const RosterPage = () => {
     
     return (
         <>
-        <div className = "nav">
-            <div className = "navbarText">
-                <strong>NBA Stats App</strong> 
-            </div>
-            <ul className = "navbarLinks">
-                <li className = "link"> <a className = "navbarText" href="../nba-stats-app"> Search a Player </a></li>
-                <li className = "link"> <a className = "navbarText" href="/nba-stats-app/roster"> My Roster </a></li>
-            </ul>
-        </div>
+        <NavBar/>
 
         <div className = "RosterInfo">
             <div className = "info">
