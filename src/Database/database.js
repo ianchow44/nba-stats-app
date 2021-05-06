@@ -1,8 +1,9 @@
 import Dexie from 'dexie';
 
 const db = new Dexie('myDb');
-db.version(1).stores({
-    fantasyPoints: "name, Points, Assists, Rebounds, Steals, Blocks, TOs, FGM, FGA, FTM, FTA, TPM, TPA"
+db.version(2).stores({
+    fantasyPoints: "name, Points, Assists, Rebounds, Steals, Blocks, TOs, FGM, FGA, FTM, FTA, TPM, TPA",
+    roster: "name, Points, Assists, Rebounds, Steals, Blocks, TOs, FGM, FGA, FTM, FTA, TPM, TPA, Total"
 });
 
 export default db;

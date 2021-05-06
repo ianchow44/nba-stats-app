@@ -9,6 +9,7 @@ import db from "../Database/database"
 import NavBar from './Nav';
 
 
+
 const StatsPage = () => {
 
   const [playerName, setplayerName] = useState(null)
@@ -75,9 +76,16 @@ const StatsPage = () => {
     })
   }
 
+  const addToRoster = () => {
+    // console.log(playerName);
+    // console.log(fantasyValues);
+    db.roster.put({name: playerName, Points: fantasyValues.Points, Assists: fantasyValues.Assists, Rebounds: fantasyValues.Rebounds, Steals: fantasyValues.Steals, Blocks: fantasyValues.Blocks, TOs: fantasyValues.TOs, FGM: fantasyValues.FGM, FGA: fantasyValues.FGA, FTM: fantasyValues.FTM, FTA: fantasyValues.FTA, TPM: fantasyValues.TPM, TPA: fantasyValues.TPA, Total: fantasyValues.Total})
+  }
+
   const {search} = useParams();
   console.log(search);
   if(firstLoad){
+    console.log("here")
     getPlayerId(search);
     setfirstLoad(false);
   }
@@ -129,15 +137,15 @@ const StatsPage = () => {
           <strong> Fantasy Points </strong>
           <br/>
           <br/>
-          Points: {fantasyValues["points"]}
+          Points: {fantasyValues["Points"]}
           <br />
-          Rebounds: {fantasyValues["rebounds"]}
+          Rebounds: {fantasyValues["Rebounds"]}
           <br />
-          Assists: {fantasyValues["assists"]}
+          Assists: {fantasyValues["Assists"]}
           <br />
-          Steals: {fantasyValues["steals"]}
+          Steals: {fantasyValues["Steals"]}
           <br />
-          Blocks: {fantasyValues["blocks"]}
+          Blocks: {fantasyValues["Blocks"]}
           <br />
           Turnovers: {fantasyValues["TOs"]}
           <br />
@@ -153,8 +161,13 @@ const StatsPage = () => {
         </div>
       </div>
       <div className = "totalPoints">
-        Total Fantasy Points: {fantasyValues.total}
+        Total Fantasy Points: {fantasyValues["Total"]}
       </div>
+      <Button
+        onClick={addToRoster}
+      >
+        Add
+      </Button>
     </>
   );
 }

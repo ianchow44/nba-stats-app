@@ -190,7 +190,10 @@ function HomePage(){
     
 
     const test = (e) => {
-        db.fantasyPoints.clear();
+        db.roster.add({name:"Kevin", Points: 1, Assists: 2, Rebounds: 0, Steals: 0, Blocks: 0, TOs: 0, FGM: 0, FGA: 0, FTM: 0, FTA: 0, TPM: 0, TPA: 0, Total: 1});
+    }
+    const clear = (e) => {
+        db.roster.clear();
     }
     console.log(fantasyPointList[0])
     return(
@@ -412,6 +415,8 @@ function HomePage(){
             <a href="/stat">Click</a>
             <Button
             onClick={test}>Button</Button>
+            <Button
+            onClick={clear}>Clear</Button>
         </div>
     )
 }

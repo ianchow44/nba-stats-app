@@ -1,36 +1,57 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Styles/Roster.css';
 import MaterialTable from 'material-table';
-
+import db from "../Database/database"
+import { useLiveQuery } from "dexie-react-hooks";
 
 
 
 const RosterPage = () => {
+    const [firstLoad, setfirstLoad] = useState(true)
+
     const [state, setState] = React.useState({
         columns: [
           { title: 'Name', field: 'name' },
-          { title: 'Total Fantasy Points', field: 'totalpoints', type: 'numeric' },
-          { title: 'Points', field: 'points', type: 'numeric' },
-          { title: 'Rebounds', field: 'rebounds', type: 'numeric' },
-          { title: 'Assists', field: 'assists', type: 'numeric' },
-          { title: 'Steals', field: 'steals', type: 'numeric' },
-          { title: 'Blocks', field: 'blocks', type: 'numeric' },
-          { title: 'Turnovers', field: 'turnovers', type: 'numeric' },
-          { title: 'Field Goals Made', field: 'fgm', type: 'numeric' },
-          { title: 'Field Goals Attempted', field: 'fga', type: 'numeric' },
-          { title: 'Free Throws Made', field: 'ftm', type: 'numeric' },
-          { title: 'Free Throws Attempted', field: 'fta', type: 'numeric' },
-          { title: '3 Pointers Made', field: 'threepm', type: 'numeric' },
-          { title: '3 Pointers Attempted', field: 'threepa', type: 'numeric' },
+          { title: 'Total Fantasy Points', field: 'Total', type: 'numeric' },
+          { title: 'Points', field: 'Points', type: 'numeric' },
+          { title: 'Rebounds', field: 'Rebounds', type: 'numeric' },
+          { title: 'Assists', field: 'Assists', type: 'numeric' },
+          { title: 'Steals', field: 'Steals', type: 'numeric' },
+          { title: 'Blocks', field: 'Blocks', type: 'numeric' },
+          { title: 'Turnovers', field: 'TOs', type: 'numeric' },
+          { title: 'Field Goals Made', field: 'FGM', type: 'numeric' },
+          { title: 'Field Goals Attempted', field: 'FGA', type: 'numeric' },
+          { title: 'Free Throws Made', field: 'FTM', type: 'numeric' },
+          { title: 'Free Throws Attempted', field: 'FTA', type: 'numeric' },
+          { title: '3 Pointers Made', field: 'TPM', type: 'numeric' },
+          { title: '3 Pointers Attempted', field: 'TPA', type: 'numeric' },
 
         ],
         data: [
-          { name: 'Lebron James', totalpoints: 40, points: 28, rebounds: 6, assists: 5, steals: 2.3, blocks: 1, turnovers: 3.1, fgm: 12, fga: 21, ftm: 6, fta: 9, threepm: 3, threepa: 5, birthYear: 1987 },
-          { name: 'Kevin Durant', totalpoints: 30, points: 28, rebounds: 6, assists: 5, steals: 2.3, blocks: 1, turnovers: 3.1, fgm: 12, fga: 21, ftm: 6, fta: 9, threepm: 3, threepa: 5, birthYear: 1987 },
-
+          { name: 'Lebron James', Total: 40, Points: 28, Rebounds: 6, Assists: 5, Steals: 2.3, Blocks: 1, TOs: 3.1, FGM: 12, FGA: 21, FTM: 6, FTA: 9, TPM: 3, TPA: 5},
+          { name: ' James', Total: 40, Points: 28, Rebounds: 6, Assists: 5, Steals: 2.3, Blocks: 1, TOs: 3.1, FGM: 12, FGA: 21, FTM: 6, FTA: 9, TPM: 3, TPA: 5},
 
         ],
       });
+      var rosterList = useLiveQuery(() => db.roster.toArray(), []);
+    if(!rosterList){
+        return(<div></div>)
+    }
+     
+    // console.log(firstLoad)
+    // if(firstLoad){
+    //     console.log("here")
+    //     setState((prev) => {
+            
+    //         return {...prev, rosterList}
+    //     });
+    //     setfirstLoad(false)
+    // }
+    
+    // console.log("yes");
+    
+
+    
     return (
         <>
         <div className = "nav">
@@ -65,7 +86,7 @@ const RosterPage = () => {
                 paging: false
             }}
             columns={state.columns}
-            data={state.data}
+            data={rosterList}
             editable={{
                 // onRowAdd: (newData) =>
                 // new Promise((resolve) => {
@@ -100,6 +121,8 @@ const RosterPage = () => {
                         data.splice(data.indexOf(oldData), 1);
                         return { ...prevState, data };
                     });
+                    console.log(oldData.name)
+                    db.roster.delete(oldData.name)
                     }, 600);
                 }),
             }}
